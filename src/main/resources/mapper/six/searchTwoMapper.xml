@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.taru.dao.six.SearchTwoDao">
+<select id="searchTwoDao" parameterType="hashMap" resultMap="searchMap">
+    SELECT h.*,s.style_name,l.landlord_name,l.landlord_header_picture,l.landlord_phone FROM home h LEFT JOIN style s on s.style_id=h.style_id
+    left JOIN landlord l on h.landlord_id=l.landlord_id
+    <where>
+        <if test="userId!=null and userId!='' ">
+            and e.id=#{userId}
+        </if>
+        <if test="name!=null and name!='' ">
+            and name=#{deptName}
+        </if>
+        <if test="role!=null and role!='' ">
+            and role=#{roleName}
+        </if>
+        <if test="status!=null and status!='' ">
+            and status=#{status}
+        </if>
+        <if test="userName!=null and userName!='' ">
+            and username=#{userName}
+        </if>
+    </where>
+    WHERE h.home_in_date >= '2019-8-6' and '2019-08-9'>= h.home_out_date and
+    s.style_name='现代简约风格' and h.home_address='西安' and h.home_spot='回民街'
+</select>
+
+</mapper>
