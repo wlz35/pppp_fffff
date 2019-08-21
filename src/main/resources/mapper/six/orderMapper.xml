@@ -2,7 +2,7 @@
         <!DOCTYPE mapper
                 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.taru.dao.six.OrderDao">
+<mapper namespace="org.taru.dao.six.OrdersSixDao">
 <select id="ordersDao" resultType="org.taru.entity.OrderrVo">
         select o.order_id orderId,h.home_name homeName,u.user_name userName,o.order_user_indate orderUserIndate,o.order_price orderPrice,o.order_user_outdate orderOutdate from orders o LEFT JOIN home h
 on h.home_id=o.home_id LEFT JOIN user u on u.user_id=o.user_id
