@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.taru.dao.four.InserdiscusDao">
+
+    <insert id="insertdiscuss" parameterType="org.taru.entity.Discuss" useGeneratedKeys="true" keyProperty="discuss_id" >
+         insert into discuss (discuss_text,discuss_date,home_id,user_id)
+         VALUES (#{discusstext},DATE(CURDATE()),#{homeid},#{userid})
+    </insert>
+</mapper>

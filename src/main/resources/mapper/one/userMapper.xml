@@ -2,92 +2,28 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.taru.lanqiao.dao.UserDao">
-    <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />
+<mapper namespace="org.taru.dao.one.UserDao">
+
     <!--  关联关系的配置-->
-    <resultMap id="BaseResultMap" type="org.taru.lanqiao.pojo.User" >
-        <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
-        <result column="USER_USER_NAME" property="userUserName" jdbcType="VARCHAR" />
-        <result column="USER_PASSWORD" property="userPassword" jdbcType="VARCHAR" />
-        <result column="USER_TELPHONE" property="userTelphone" jdbcType="VARCHAR" />
-        <result column="USER_ADDRESS" property="userAddress" jdbcType="VARCHAR" />
-        <result column="USER_SHOP_NAME" property="userShopName" jdbcType="VARCHAR" />
-        <result column="USER_COMMENT" property="userComment" jdbcType="VARCHAR" />
-        <result column="USER_STATUS" property="userStatus" jdbcType="TINYINT" />
+    <resultMap id="UserResultMap" type="org.taru.entity.User" >
+        <id column="user_id" property="userId" jdbcType="INTEGER" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="user_password" property="passWord" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="user_header_picture" property="userHeaderPicture" jdbcType="VARCHAR" />
     </resultMap>
 
-    <sql id="BaseSqlColumn">
-        USER_ID,     USER_USER_NAME ,   USER_PASSWORD ,USER_TELPHONE,USER_ADDRESS,USER_SHOP_NAME,USER_COMMENT,USER_STATUS
-
-    </sql>
-
-    <select id="selectUserByIds"  useCache="true"   resultMap="BaseResultMap" >
-
-            select 
-                <include refid="BaseSqlColumn"></include>
-             from  user
-    </select>
-    <!--   "shopname = 张"   _parameter 内置对象   shopName 参数名称     pattern1 定义的变量 -->
-    <select id="selectUserLikeName">
-        <bind name="pattern1" value="'%' + _parameter.shopName + '%'" />
-        select
-        <include refid="BaseSqlColumn"></include>
-        from  user USER_STATUS =1
-        and  USER_USER_NAME  like  #{pattern1}
-        where
-
+    <!--用户登录-->
+    <select id="login" resultMap="UserResultMap" parameterType="org.taru.entity.User">
+        select * from user where user_name=#{userName} and user_password =#{passWord}
     </select>
 
-
-    <!-- 别名映射-->
-    <select id="selectUsers"   resultMap="BaseResultMap">
-        select
-        <include refid="BaseSqlColumn"></include>
-         from user
-    </select>
-
-    
-    <select id="selectUserById"  resultType="org.taru.lanqiao.pojo.User">
-                select user_id  as  userId ,
-                    user_user_name  as  userUserName ,
-                    user_password as userPassword
-                 from user
-                 where    user_id =#{id,jdbcType=VARCHAR}
-
-    </select>
-    <delete id="delUserById" >
-            delete from user where  user_id =#{id,jdbcType=VARCHAR}
-    </delete>
-    
-    <insert id="insertUser"  parameterType="org.taru.lanqiao.pojo.User" >
-        insert into  user (user_id ,user_user_name,user_status,user_password)
-        values (#{userId,jdbcType=VARCHAR},#{userUserName,jdbcType=VARCHAR},#{userStatus,jdbcType=TINYINT},'123456')
-
+    <!--用户注册-->
+    <insert id="resiger">
+        insert into user(user_name,user_password,sex,email,phone,user_header_picture)values(#{userName},#{passWord},#{sex},#{email},#{phone},#{userHeaderPicture})
     </insert>
-
-    <!-- id 和接口的方法名一致-->
-    <select id="queryByUandPwd"  parameterType="hashMap"  resultMap="BaseResultMap">
-            select
-             <include refid="BaseSqlColumn"></include>
-             from  user where  user_user_name =#{username,jdbcType=VARCHAR} and  user_password =#{password,jdbcType=VARCHAR}
-
-    </select>
-
-
-    <delete id="deleteUserById" >
-            delete from  user  where   user_id =#{id}
-    </delete>
-
-
-
-<!--
-
-    <insert id="insertUserWithBak"   parameterType="org.taru.model.User" >
-         /*   insert into  user  values(.......)*/
-
-    </insert>
--->
-
 
 
 </mapper>

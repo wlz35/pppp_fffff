@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.taru.dao.six.SearchTwoDao">
+<select id="searchTwoDao" parameterType="hashMap" resultType="org.taru.entity.HomeLandlordStyleVO">
+    SELECT h.home_id homeId,h.home_name homeName,h.home_address homeAddress,h.home_price homePrice,h.home_in_date homeIndate,h.home_describe homeDescribe,h.home_status homeStatus,h.discuss_id discussId,
+    h.style_id styleId,h.home_praise homePraise,h.home_spot homeSpot,h.home_configure homeConfigure,h.home_out_date homeOutDate,
+    s.style_name styleName,l.landlord_name landlordName,l.landlord_header_picture landlordHeaderPicture,l.landlord_phone landlordPhonr FROM home h LEFT JOIN style s on s.style_id=h.style_id
+    left JOIN landlord l on h.landlord_id=l.landlord_id
+    <where>
+        <if test="homeInDate!=null and homeInDate!='' ">
+           and h.home_in_date >= #{homeInDate}
+        </if>
+        <if test="homeOutDate!=null and homeOutDate!='' ">
+            and '2019-08-9'>= #{homeOutDate}
+        </if>
+        <if test="styleName!=null and styleName!='' ">
+            and s.style_name=#{styleName}
+        </if>
+        <if test="homeAddress!=null and homeAddress!='' ">
+           and h.home_address=#{homeAddress}
+        </if>
+        <if test="homeSpot!=null and homeSpot!='' ">
+            and h.home_spot=#{homeSpot}
+        </if>
+
+    </where>
+</select>
+
+</mapper>

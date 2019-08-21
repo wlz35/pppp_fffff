@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.taru.dao.three.AddHomeDao">
+    <resultMap id="style" type="org.taru.entity.AddHome">
+    <id property="styleId" column="style_id" jdbcType="TINYINT"></id>
+    <result property="styleName" column="style_name" jdbcType="VARCHAR"></result>
+    </resultMap>
+    <insert id="addhome" parameterType="org.taru.entity.AddHome" useGeneratedKeys="true" keyProperty="id">
+       INSERT INTO home ( style_id, home_name, home_address, home_price,
+       home_in_date,home_out_date, pictures_id, home_describe, home_spot,
+       home_configure, landlord_id )
+        VALUES
+            (
+            (
+        SELECT
+            style_id
+        FROM
+            style
+        WHERE
+            style_name = #{styleName}),#{homeName},#{homeAddress},#{homePrice},#{homeInDate },
+            #{homeOutDate},#{picturesId},#{homeDescribe},#{homeSpot},#{homeConfigure},
+            (
+        SELECT
+            landlord_id
+        FROM
+            landlord
+        WHERE
+            landlord_phone = #{landlordPhone}))
+    </insert>
+</mapper>

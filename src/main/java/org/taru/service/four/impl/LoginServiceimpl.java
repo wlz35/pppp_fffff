@@ -1,0 +1,20 @@
+package org.taru.service.four.impl;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.taru.dao.four.LoginDao;
+import org.taru.entity.Admin;
+import org.taru.service.four.LoginService;
+
+
+@Service
+public class LoginServiceimpl implements LoginService {
+    @Autowired
+    LoginDao ld;
+    public Admin loginservice(Admin user){
+
+        return ld.login(user);
+    }
+}
