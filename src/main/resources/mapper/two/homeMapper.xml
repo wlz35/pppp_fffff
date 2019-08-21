@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.taru.dao.two.HomeDao">
+    <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />
+
+    <resultMap id="HomeResultMap" type="org.taru.vo.two.Home" >
+        <id column="home_id" property="homeId" jdbcType="INTEGER" />
+        <result column="home_name" property="homeName" jdbcType="VARCHAR" />
+        <result column="home_address" property="homeAddress" jdbcType="VARCHAR" />
+        <result column="home_price" property="homePrice" jdbcType="VARCHAR" />
+        <result column="home_out_date" property="homeOutDate" jdbcType="DATE" />
+        <result column="home_in_date" property="homeInDate" jdbcType="DATE" />
+        <!--<result column="reserve_date" property="reserveDate" jdbcType="DATE" />-->
+        <!--<result column="landlord_id" property="landlord_id" jdbcType="INTEGER" />-->
+        <result column="pictures_id" property="pictureId" jdbcType="VARCHAR" />
+        <result column="home_describe" property="homeDescribe" jdbcType="VARCHAR" />
+        <result column="home_status" property="homeStatus" jdbcType="INTEGER" />
+        <!--<result column="discuss_id" property="discussId" jdbcType="INTEGER" />-->
+        <result column="style_id" property="styleId" jdbcType="INTEGER" />
+        <result column="home_praise" property="homePraise" jdbcType="VARCHAR" />
+        <result column="home_spot" property="homeSpot" jdbcType="VARCHAR" />
+        <result column="home_configure" property="homeConfigure" jdbcType="VARCHAR" />
+        <association property="landlords" javaType="org.taru.vo.two.Landlord">
+            <id column="landlord_id" property="lanlordId" jdbcType="INTEGER" />
+            <result column="landlord_name" property="landlordName" ></result>
+        </association>
+        <collection property="discusses" ofType="org.taru.vo.two.Discuss" >
+            <id column="discuss_id" property="discussId" jdbcType="INTEGER" />
+            <result column="discuss_text" property="discussText" ></result>
+        </collection>
+    </resultMap>
+
+    <!--查询房源详细信息（包括房东、评论、配置）-->
+    <select id="queryHomeInfo" resultMap="HomeResultMap">
+        select l.landlord_name, d.discuss_text, h.*
+        from home h
+        left join discuss d on h.discuss_id = d.discuss_id
+        left join landlord l on l.landlord_id = h.landlord_id
+    </select>
+
+    <!--根据ID查询房源详细信息（包括房东、评论、配置）-->
+    <select id="queryHomeInfoById" resultMap="HomeResultMap">
+        select l.landlord_name, d.discuss_text, h.*
+        from home h
+        left join discuss d on h.discuss_id = d.discuss_id
+        left join landlord l on l.landlord_id = h.landlord_id
+        where h.home_id = #{homeId}
+    </select>
+
+    <resultMap id="HomeStyleResultMap" type="org.taru.vo.two.Home" >
+        <id column="home_id" property="homeId" jdbcType="INTEGER" />
+        <result column="home_name" property="homeName" jdbcType="VARCHAR" />
+        <result column="home_address" property="homeAddress" jdbcType="VARCHAR" />
+        <result column="home_price" property="homePrice" jdbcType="VARCHAR" />
+        <!--<result column="reserve_date" property="reserveDate" jdbcType="VARCHAR" />-->
+        <result column="home_out_date" property="homeOutDate" jdbcType="DATE" />
+        <result column="home_in_date" property="homeInDate" jdbcType="DATE" />
+        <result column="pictures_id" property="pictureId" jdbcType="VARCHAR" />
+        <result column="home_describe" property="homeDescribe" jdbcType="VARCHAR" />
+        <result column="home_status" property="homeStatus" jdbcType="INTEGER" />
+        <result column="style_id" property="styleId" jdbcType="INTEGER" />
+        <result column="home_praise" property="homePraise" jdbcType="VARCHAR" />
+        <result column="home_spot" property="homeSpot" jdbcType="VARCHAR" />
+        <result column="home_configure" property="homeConfigure" jdbcType="VARCHAR" />
+        <association property="style" javaType="org.taru.vo.two.Style">
+            <id column="style_id" property="styleId" jdbcType="INTEGER" />
+            <result column="style_name" property="styleName"></result>
+        </association>
+    </resultMap>
+
+    <!--查询所有房源风格-->
+    <select id="queryHomeStyle" resultMap="HomeStyleResultMap">
+        select *
+        from home h
+        left join style s on h.style_id = s.style_id
+    </select>
+
+    <resultMap id="QueryHomeResultMap" type="org.taru.vo.two.Home" >
+        <id column="home_id" property="homeId" jdbcType="INTEGER" />
+        <result column="home_name" property="homeName" jdbcType="VARCHAR" />
+        <result column="home_address" property="homeAddress" jdbcType="VARCHAR" />
+        <result column="home_price" property="homePrice" jdbcType="VARCHAR" />
+        <!--<result column="reserve_date" property="reserveDate" jdbcType="VARCHAR" />-->
+        <!--<result column="landlord_id" property="landlord_id" jdbcType="INTEGER" />-->
+        <result column="home_out_date" property="homeOutDate" jdbcType="DATE" />
+        <result column="home_in_date" property="homeInDate" jdbcType="DATE" />
+        <result column="pictures_id" property="pictureId" jdbcType="VARCHAR" />
+        <result column="home_describe" property="homeDescribe" jdbcType="VARCHAR" />
+        <result column="home_status" property="homeStatus" jdbcType="INTEGER" />
+        <!--<result column="discuss_id" property="discussId" jdbcType="INTEGER" />-->
+        <result column="style_id" property="styleId" jdbcType="INTEGER" />
+        <result column="home_praise" property="homePraise" jdbcType="VARCHAR" />
+        <result column="home_spot" property="homeSpot" jdbcType="VARCHAR" />
+        <result column="home_configure" property="homeConfigure" jdbcType="VARCHAR" />
+        <association property="landlords" javaType="org.taru.vo.two.Landlord">
+            <id column="landlord_id" property="lanlordId" jdbcType="INTEGER" />
+            <result column="landlord_name" property="landlordName" ></result>
+            <result column="landlord_header" property="landlordHeaderPicture" ></result>
+        </association>
+        <collection property="discusses" ofType="org.taru.vo.two.Discuss" >
+            <id column="discuss_id" property="discussId" jdbcType="INTEGER" />
+            <result column="discuss_text" property="discussText" ></result>
+            <result column="discuss_date" property="discussDate" ></result>
+            <association property="user" javaType="org.taru.vo.two.User">
+                <id column="user_id" property="userId" jdbcType="INTEGER" />
+                <result column="user_name" property="userName" ></result>
+                <result column="user_header_picture" property="userHeaderPicture" ></result>
+            </association>
+        </collection>
+        <collection property="pictures" ofType="org.taru.vo.two.Pictures" >
+            <id column="picture_id" property="pictureId" jdbcType="INTEGER" />
+            <result column="picture_one" property="pictureOne" ></result>
+            <result column="picture_two" property="pictureTwo" ></result>
+            <result column="picture_three" property="pictureThree" ></result>
+            <result column="picture_four" property="pictureFour" ></result>
+            <result column="picture_five" property="pictureFive" ></result>
+        </collection>
+    </resultMap>
+
+    <!--根据房源ID房源图片（5张），房东信息，房东头像，评论信息-->
+    <select id="queryHomeById" resultMap="QueryHomeResultMap">
+        select * from home h
+        left join pictures p on h.pictures_id = p.picture_id
+        left join landlord l on h.landlord_id = l.landlord_id
+        left join discuss d on h.discuss_id = d.discuss_id
+		left join user u on u.user_id = d.user_id
+        where h.home_id = #{homeId}
+    </select>
+
+</mapper>
