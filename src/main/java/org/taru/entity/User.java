@@ -1,12 +1,22 @@
 package org.taru.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 用户表
  */
 public class User implements Serializable {
 private int userId;
+    private List<Order> orders;
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
 
     public int getUserId() {
         return userId;

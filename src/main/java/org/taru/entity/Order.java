@@ -8,6 +8,15 @@ import java.io.Serializable;
 public class Order implements Serializable {
     private int orderId;
     private  int homeId;
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public int getOrderId() {
         return orderId;

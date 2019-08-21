@@ -1,6 +1,7 @@
 package org.taru.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 评论表
@@ -22,13 +23,7 @@ public class Discuss implements Serializable {
         this.discussText = discussText;
     }
 
-    public String getDiscussDate() {
-        return discussDate;
-    }
 
-    public void setDiscussDate(String discussDate) {
-        this.discussDate = discussDate;
-    }
 
     public int getHomeId() {
         return homeId;
@@ -48,7 +43,16 @@ public class Discuss implements Serializable {
 
     private int discussId;
     private String discussText;
-    private String discussDate;
+
+    public Date getDiscussDate() {
+        return discussDate;
+    }
+
+    public void setDiscussDate(Date discussDate) {
+        this.discussDate = discussDate;
+    }
+
+    private Date discussDate;
     private int homeId;
     private int discussStatus;
 }
