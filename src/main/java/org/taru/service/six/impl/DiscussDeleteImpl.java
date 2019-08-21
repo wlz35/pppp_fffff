@@ -10,7 +10,7 @@ public class DiscussDeleteImpl implements DisscussDeleteInterface {
     @Autowired
     DiscussDao d;
     @Override
-    public int disscussDeleteInterface(int id) {
+    public int discussDeleteInterface(int id) {
         return d.discussDelete(id);
     }
 }

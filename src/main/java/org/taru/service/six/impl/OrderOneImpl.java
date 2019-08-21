@@ -2,9 +2,8 @@ package org.taru.service.six.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.taru.dao.six.OrderDao;
+import org.taru.dao.six.OrdersSixDao;
 import org.taru.entity.OrderrVo;
-import org.taru.service.six.OrderInterface;
 import org.taru.service.six.OrderOne;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.List;
 @Service
 public class OrderOneImpl implements OrderOne {
     @Autowired
-    OrderDao d;
+    OrdersSixDao d;
     @Override
     public List<OrderrVo> orderOneInterface(int id) {
         return d.ordersOneDao(id);
