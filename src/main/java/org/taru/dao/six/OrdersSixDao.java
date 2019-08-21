@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Repository
 @Mapper
-public interface OrderDao {
+public interface OrdersSixDao {
     /**
      * 查询所有订单
      * @return
