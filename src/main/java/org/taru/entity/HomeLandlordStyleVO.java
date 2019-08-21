@@ -107,6 +107,16 @@ public class HomeLandlordStyleVO implements Serializable {
     private String homePrice;
     private String homeIndate;
 
+    public String getHomeConfigure() {
+        return homeConfigure;
+    }
+
+    public void setHomeConfigure(String homeConfigure) {
+        this.homeConfigure = homeConfigure;
+    }
+
+    private String homeConfigure;
+
     public String getHomeIndate() {
         return homeIndate;
     }
