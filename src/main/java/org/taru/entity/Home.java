@@ -1,4 +1,4 @@
-package org.taru.lanqiao.pojo;
+package org.taru.entity;
 
 import java.io.Serializable;
 
@@ -40,13 +40,6 @@ public class Home implements Serializable {
         this.homePrice = homePrice;
     }
 
-    public String getReserveDate() {
-        return reserveDate;
-    }
-
-    public void setReserveDate(String reserveDate) {
-        this.reserveDate = reserveDate;
-    }
 
     public int getLandlord_id() {
         return landlord_id;
@@ -115,7 +108,25 @@ public class Home implements Serializable {
     private String homeName;
     private String homeAddress;
     private String homePrice;
-    private String reserveDate;
+    private String homeInDate;
+
+    public String gethomeInDate() {
+        return homeInDate;
+    }
+
+    public void sethomeInDate(String homeInDate) {
+        this.homeInDate = homeInDate;
+    }
+
+    public String getHomeOutDate() {
+        return homeOutDate;
+    }
+
+    public void setHomeOutDate(String homeOutDate) {
+        this.homeOutDate = homeOutDate;
+    }
+
+    private  String homeOutDate;
     private int landlord_id;
     private String homePicture;
     private String homeDescribe;
