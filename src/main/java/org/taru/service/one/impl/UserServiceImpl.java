@@ -1,4 +1,4 @@
-package org.taru.service.one.Impl;
+package org.taru.service.one.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
