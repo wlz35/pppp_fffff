@@ -21,6 +21,13 @@ import java.util.Map;
 public class SearchTwoApi {
     @Autowired
     SearchTwoInterface d;
+
+    /**
+     * 多条件查询 根据前端发送json 数据为Map 传homeInDate、homeOutDate、styleName、homeAddress、homeSpot、pageNum、pageSize
+     * 查询房东信息、房源信息、房源图片
+     * @param map
+     * @return
+     */
     @RequestMapping(value = "/api/searchTwo",method = RequestMethod.GET)
     @ResponseBody
     public JsonResult searchTwo(@RequestBody Map<String,Object> map){
@@ -33,11 +40,12 @@ public class SearchTwoApi {
 //        @Param("pageSize")int pageSize
 
         HashMap hashMap=new HashMap();
-        hashMap.put("homeInDate",map.get("homeInDate"));
-        hashMap.put("homeOutDate",map.get("homeOutDate"));
-        hashMap.put("styleName",map.get("styleName"));
-        hashMap.put("homeAddress",map.get("homeAddress"));
-        hashMap.put("homeSpot",map.get("homeSpot"));
+        hashMap.put("homeInDate",(String)map.get("homeInDate"));
+        hashMap.put("homeOutDate",(String)map.get("homeOutDate"));
+        hashMap.put("styleName",(String)map.get("styleName"));
+        hashMap.put("homeAddress",(String)map.get("homeAddress"));
+        hashMap.put("closingPrice",(String)map.get("closingPrice"));
+        hashMap.put("beginningPrice",(String)map.get("Beginning price"));
         PageHelper.startPage((int)map.get("pageNum"),(int)map.get("pageSize"));
         List<HomeLandlordStyleVO> list=d.searchTwoDao(hashMap);
         PageInfo pageInfo=new PageInfo(list);

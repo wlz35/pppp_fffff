@@ -29,7 +29,7 @@ public class DiscussDeleteApi {
     @RequestMapping(value = "/api/discussDelete",method = RequestMethod.GET)
     @ResponseBody
     public JsonResult discussQuary(@Param("id")int id){
-        int i=d.disscussDeleteInterface(id);
+        int i=d.discussDeleteInterface(id);
         JsonResult json=null;
         try{
             if(i!=0){

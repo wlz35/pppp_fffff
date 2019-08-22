@@ -21,8 +21,8 @@
         <if test="homeAddress!=null and homeAddress!='' ">
            and h.home_address=#{homeAddress}
         </if>
-        <if test="homeSpot!=null and homeSpot!='' ">
-            and h.home_spot=#{homeSpot}
+        <if test="closingPrice!=null and closingPrice!=''and beginningPrice!=null and beginningPrice!=''">
+            and h.home_price between #{beginningPrice} AND #{closingPrice}
         </if>
 
     </where>
