@@ -45,6 +45,16 @@ public class HomeStyle implements Serializable {
     private int homeStatus;
     private List<Style> style;
 
+    public Pictures getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(Pictures pictures) {
+        this.pictures = pictures;
+    }
+
+    private Pictures pictures;
+
     public List<Style> getStyle() {
         return style;
     }

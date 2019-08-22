@@ -21,16 +21,27 @@
         <result column="home_praise" property="homePraise" jdbcType="VARCHAR"></result>
         <result column="home_spot" property="homeSpot" jdbcType="VARCHAR"></result>
         <result column="home_configure" property="homeConfigure" jdbcType="VARCHAR"></result>
+        <association property="pictures" javaType ="org.taru.vo.one.Pictures">
+            <id column="picture_id" property="pictureId" jdbcType="INTEGER" ></id>
+            <result column="picture_one" property="pictureOne" jdbcType="VARCHAR"></result>
+            <result column="picture_two" property="pictureTwo" jdbcType="VARCHAR"></result>
+            <result column="picture_three" property="pictureThree" jdbcType="VARCHAR"></result>
+            <result column="picture_four" property="pictureFour" jdbcType="VARCHAR"></result>
+            <result column="picture_five" property="pictureFive" jdbcType="VARCHAR"></result>
+        </association>
         <collection property="style" ofType="org.taru.entity.Style">
             <id column="style_id" property="styleId" jdbcType="INTEGER"></id>
             <result column="style_name" property="styleName" jdbcType="VARCHAR"></result>
             <result column="style_status" property="styleStatus" jdbcType="INTEGER"></result>
         </collection>
+
     </resultMap>
 
     <!--根据风格查询房源信息/分页-->
     <select id="queryByStyle" resultMap="homeStyleResultMap" >
-        select * from home h left join style s on h.style_id = s.style_id where s.style_name=#{styleName} order by h.home_praise desc
+        select * from home h left join style s on h.style_id = s.style_id
+        left join pictures p on h.pictures_id = p.picture_id
+        where s.style_name=#{styleName} order by h.home_praise desc
     </select>
 
 
