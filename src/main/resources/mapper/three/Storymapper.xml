@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.taru.dao.three.StoryDao">
+    <resultMap id="story" type="org.taru.entity.Story">
+        <id property="storyId" column="story_id" jdbcType="TINYINT"></id>
+        <result property="storyTitle" column="story_title" jdbcType="VARCHAR"></result>
+        <result property="storyDiscrible" column="story_discrible" jdbcType="VARCHAR"></result>
+        <result property="storyCity" column="story_city" jdbcType="VARCHAR"></result>
+        <result property="storyLikes" column="story_likes" jdbcType="VARCHAR"></result>
+        <result property="picturesId" column="pictures_id" jdbcType="VARCHAR"></result>
+        <result property="userId" column="user_id" jdbcType="VARCHAR"></result>
+        <result property="storyStatus" column="story_status" jdbcType="VARCHAR"></result>
+    </resultMap>
+        <select id="allstorycity" parameterType="org.taru.entity.Story" resultMap="story">
+            SELECT
+                story_city
+            FROM
+                story
+        </select>
+        <select id="hotstorycity" parameterType="org.taru.entity.Story" resultMap="story">
+            SELECT
+                story_city
+            FROM
+                story
+            GROUP BY
+                story_city
+            ORDER BY
+                story_likes DESC
+                LIMIT 0,3
+         </select>
+        <update id="clik" parameterType="org.taru.entity.Story">
+            UPDATE story set story_likes=story_likes+1 where story_id=#{storyId}
+        </update>
+</mapper>
