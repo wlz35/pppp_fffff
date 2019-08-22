@@ -10,7 +10,8 @@
         <result column="home_name" property="homeName" jdbcType="VARCHAR"></result>
         <result column="home_address" property="homeAddress" jdbcType="VARCHAR"></result>
         <result column="home_price" property="homePrice" jdbcType="VARCHAR"></result>
-        <result column="reserve_date" property="reserveDate" jdbcType="VARCHAR"></result>
+        <result column="home_in_date" property="homeInDate" jdbcType="DATE"></result>
+        <result column="home_out_date" property="homeOutDate" jdbcType="DATE"></result>
         <result column="landlord_id" property="landlord_id" jdbcType="INTEGER"></result>
         <result column="pictures_id" property="pictureId" jdbcType="INTEGER"></result>
         <result column="home_describe" property="homeDescribe" jdbcType="VARCHAR"></result>
