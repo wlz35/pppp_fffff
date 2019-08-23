@@ -2,7 +2,9 @@ package org.taru.dao.six;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+import org.taru.entity.Home;
 import org.taru.entity.HomeLandlordStyleVO;
+import org.taru.entity.Style;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,5 +16,6 @@ import java.util.List;
 @Mapper
 public interface SearchTwoDao {
     List<HomeLandlordStyleVO> searchTwoDao(HashMap hashMap);
-
+    List<Style> styleDao();
+    List<Home> address();
 }

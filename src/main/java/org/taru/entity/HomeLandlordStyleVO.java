@@ -5,6 +5,15 @@ import java.io.Serializable;
 public class HomeLandlordStyleVO implements Serializable {
     private int homeId;
 
+    public String getPictureOne() {
+        return pictureOne;
+    }
+
+    public void setPictureOne(String pictureOne) {
+        this.pictureOne = pictureOne;
+    }
+
+    private String pictureOne;
     public int getHomeId() {
         return homeId;
     }
