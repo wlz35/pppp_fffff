@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.taru.dao.five.StyleDaos">
+
+<!--        查询风格（style）的所有信息-->
+        <select id="queryStyleDao" resultMap="styleResultMap">
+            select * from style
+        </select>
+        <resultMap id="styleResultMap" type="org.taru.entity.Style">
+            <id column="style_id" property="styleId"></id>
+            <result column="style_name" property="styleName"></result>
+            <result column="style_status" property="styleStatus"></result>
+        </resultMap>
+
+<!--        添加风格（style）-->
+        <insert id="addStyleDao" parameterType="org.taru.entity.Style">
+            insert into style(style_name,style_status) values(#{styleName,jdbcType=VARCHAR},#{styleStatus,jdbcType=INTEGER})
+        </insert>
+
+<!--        根据ID修改风格-->
+        <update id="updateStyleDao" parameterType="org.taru.entity.Style">
+            update style set style_name=#{styleName},style_status=#{styleStatus} where style_id = #{styleId}
+        </update>
+
+<!--    根据ID逻辑删除-->
+    <delete id="deleteStyleDao" parameterType="integer">
+        update style set style_status = 2 where style_id=#{styleId}
+    </delete>
+</mapper>
