@@ -2,7 +2,7 @@ package org.taru.service.one.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.taru.dao.one.StoryDao;
+import org.taru.dao.one.StorysDao;
 import org.taru.service.one.StoryService;
 import org.taru.vo.one.Storyss;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class StoryServiceImpl implements StoryService {
     @Autowired
-    StoryDao dao;
+    StorysDao dao;
 
     /**
      * 查询所有故事
