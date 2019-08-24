@@ -1,3 +1,4 @@
+
 package org.taru.dao.one;
 
 
@@ -46,3 +47,4 @@ public interface SubscriberDao {
 
 
 }
+

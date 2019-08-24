@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 @Component
-public interface StoryDao {
+public interface StorysDao {
 
     /**
      * 查询所有故事

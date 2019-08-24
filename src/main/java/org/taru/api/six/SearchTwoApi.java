@@ -30,7 +30,7 @@ public class SearchTwoApi {
     /**
      * 多条件查询 根据前端发送json 数据为Map 传homeInDate、homeOutDate、styleName、homeAddress、homeSpot、pageNum、pageSize
      * 查询房东信息、房源信息、房源图片
-     * @param
+     * @param dateHomeVo
      * @return
      */
 

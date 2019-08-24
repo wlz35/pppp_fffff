@@ -73,9 +73,11 @@ public class UserApi {
     public JsonResult getCode(String telphone)throws ClientException {
         JsonResult jsonResult = null;
         try{
+
             AliyunSmsUtils.setNewcode();
             String code = Integer.toString(AliyunSmsUtils.getNewcode());
             SendSmsResponse phoneCode = AliyunSmsUtils.sendSms(telphone,code);
+
             if(phoneCode!=null){
                 jsonResult = new JsonResult("200","发送成功",code);
             }else{
@@ -90,7 +92,7 @@ public class UserApi {
     /**
      * 上传图片
      */
-    @RequestMapping("/api/user/upload")
+    @RequestMapping(value = "/api/user/upload" ,method = RequestMethod.POST)
     public JsonResult updload(@RequestParam("userHeaderPicture") MultipartFile multipartFile){
         JsonResult jsonResult = null;
         if(!multipartFile.isEmpty()){

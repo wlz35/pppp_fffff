@@ -13,7 +13,7 @@ import java.util.List;
  * 房源的增删改查
  */
 @Service
-public class HomeServiceFiveImpl implements HomeService {
+public class HomeServiceImpl implements HomeService {
     @Autowired
     HomeDaos impl;
     //查询所有房源
