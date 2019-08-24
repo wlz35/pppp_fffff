@@ -1,3 +1,4 @@
+
 package org.taru.dao.six;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -23,3 +24,5 @@ public interface ShareSixDao {
      */
     int shareDao(int relationId,int homeId);
 }
+
+
