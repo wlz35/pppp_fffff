@@ -9,7 +9,7 @@ import org.taru.service.five.StyleService;
 import java.util.List;
 
 @Service
-public class StyleServiceImpl implements StyleService {
+public class StyleServiceFiveImpl implements StyleService {
 
 
     @Autowired
