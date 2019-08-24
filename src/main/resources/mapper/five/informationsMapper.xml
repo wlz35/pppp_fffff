@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.taru.dao.five.InformationDao">
+<!--    根据用户ID查消息-->
+    <select id="queryInforByUserIdDao" parameterType="integer" resultType="hashMap">
+       select a.user_id, a.home_id,b.home_name,b.home_address,c.picture_one from information a
+                left join home b on a.home_id=b.home_id
+                left join pictures c on b.pictures_id=c.picture_id where user_id=#{userId}
+    </select>
+
+
+</mapper>
