@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.taru.dao.two.PhotoTwoDao">
+    <cache eviction="FIFO" flushInterval="60000" size="512" readOnly="true" />
+
+
+    <resultMap id="PhotoResultMap" type="org.taru.vo.two.Pictures" >
+        <id column="picture_id" property="pictureId" jdbcType="INTEGER" />
+        <result column="picture_one" property="pictureOne" ></result>
+        <result column="picture_two" property="pictureTwo" ></result>
+        <result column="picture_three" property="pictureThree" ></result>
+        <result column="picture_four" property="pictureFour" ></result>
+        <result column="picture_five" property="pictureFive" ></result>
+    </resultMap>
+
+    <insert id="photoTwoUpload">
+        insert into pictures(picture_one,picture_two, picture_three , picture_four, picture_five)
+        values (#{pictureOne}, #{pictureTwo}, #{pictureThree}, #{pictureFour}, #{pictureFive})
+    </insert>
+
+
+</mapper>
