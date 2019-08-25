@@ -135,4 +135,23 @@ public class Home implements Serializable {
     private int styleId;
     private String homePraise;
     private String homeSpot;
+
+    public String getPictureId() {
+        return pictureId;
+    }
+
+    public void setPictureId(String pictureId) {
+        this.pictureId = pictureId;
+    }
+
+    public String getHomeConfigure() {
+        return homeConfigure;
+    }
+
+    public void setHomeConfigure(String homeConfigure) {
+        this.homeConfigure = homeConfigure;
+    }
+
+    private String pictureId;
+    private String homeConfigure;
 }
