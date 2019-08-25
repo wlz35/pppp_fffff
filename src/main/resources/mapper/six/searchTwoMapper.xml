@@ -11,10 +11,10 @@
     left join pictures p on p.picture_id=h.pictures_id
     <where>
         <if test="homeInDate!=null and homeInDate!='' ">
-           and h.home_in_date >= #{homeInDate}
+           and #{homeInDate}>= h.home_in_date
         </if>
         <if test="homeOutDate!=null and homeOutDate!='' ">
-            and #{homeOutDate}>= h.home_out_date
+            and h.home_out_date>= #{homeOutDate}
         </if>
         <if test="styleName!=null and styleName!='' ">
             and s.style_name=#{styleName}

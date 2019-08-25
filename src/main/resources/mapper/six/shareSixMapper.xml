@@ -4,7 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.taru.dao.six.ShareSixDao">
 <select id="shareoneSixDao" parameterType="int" resultType="org.taru.entity.UserRelationVo">
-select r.relation_id relationId,r.user_id userId,r.goodfrient_id goodFrientId,u.user_name userName from relation r left JOIN `user` u on r.goodfrient_id=u.user_id where r.user_id=#{id}
+ select r.relation_id relationId,r.user_id userId,r.goodfrient_id goodFrientId,u.user_name userName from relation r left JOIN `user` u on r.goodfrient_id=u.user_id where r.relation_id =
+       (SELECT MIN(BB.relation_id) FROM relation BB WHERE r.user_id = BB.user_id and r.goodfrient_id= BB.goodfrient_id GROUP BY BB.user_id) and r.user_id=#{id}
 </select>
     <update id="shareDao" parameterType="int">
         INSERT INTO `mingshu`.`information`( `user_id`, `home_id`) VALUES (#{relationId}, #{homeId});
