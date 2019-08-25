@@ -1,6 +1,7 @@
 package org.taru.api.two;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.taru.service.two.PhotoTwoService;
@@ -9,6 +10,7 @@ import org.taru.vo.two.Pictures;
 
 
 @RestController
+@CrossOrigin
 public class PhotoTwoServlet {
     @Autowired
     PhotoTwoService photoTwoService;
