@@ -15,7 +15,7 @@ public class PhotoTwoServlet {
     @Autowired
     PhotoTwoService photoTwoService;
     /**
-     * 上传图片
+     * 上传图片(传5张图片)
      */
     @RequestMapping("/api/upload/photo")
     public JsonResult photoUpload2(Pictures pictures){
