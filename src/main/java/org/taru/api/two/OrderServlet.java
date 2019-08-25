@@ -1,6 +1,7 @@
 package org.taru.api.two;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.taru.vo.two.Order;
@@ -8,6 +9,7 @@ import org.taru.service.two.OrderService;
 import org.taru.vo.JsonResult;
 
 @RestController
+@CrossOrigin(origins = "*",maxAge = 3600)
 public class OrderServlet {
     @Autowired
     OrderService orderService;
