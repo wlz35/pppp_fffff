@@ -9,7 +9,7 @@ import org.taru.service.two.OrderService;
 import org.taru.vo.JsonResult;
 
 @RestController
-@CrossOrigin(origins = "*",maxAge = 3600)
+@CrossOrigin
 public class OrderServlet {
     @Autowired
     OrderService orderService;
