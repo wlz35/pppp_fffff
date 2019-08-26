@@ -1,9 +1,13 @@
 package org.taru.api.five;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.taru.entity.Style;
 import org.taru.service.five.StyleService;
@@ -16,12 +20,16 @@ public class StyleApi {
     @Autowired
     StyleService impl;
 
+
     /**
      * 查询风格（style）的说有信息
      * @return
      */
+
+
+    @ApiOperation(value="查询风格（style）的所有信息",notes="无参数")
+    @RequestMapping(value = "/apih/queryallstyle",method = RequestMethod.GET)
     @CrossOrigin
-    @RequestMapping("/api/queryallstyle")
     @ResponseBody
     public JsonResult queryStyleApi(){
         JsonResult jsonResult = null;
@@ -45,8 +53,16 @@ public class StyleApi {
      * @param style
      * @return
      */
+
+
+    @ApiOperation(value="添加风格（style）",notes="注意参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "styleId", defaultValue = "1", value = "风格ID", required = true, paramType = "int"),
+            @ApiImplicitParam(name = "styleName", defaultValue = "1", value = "风格名", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "styleStatus", defaultValue = "1", value = "风格状态", required = true, paramType = "int")
+    })
+    @RequestMapping(value = "/apih/addstyle",method = RequestMethod.GET)
     @CrossOrigin
-    @RequestMapping("/api/addstyle")
     @ResponseBody
     public JsonResult addStyleApi(Style style){
         JsonResult jsonResult = null;
@@ -71,8 +87,15 @@ public class StyleApi {
      * @param style
      * @return
      */
+
+    @ApiOperation(value="根据ID修改风格",notes="注意参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "styleId", defaultValue = "1", value = "风格ID", required = true, paramType = "int"),
+            @ApiImplicitParam(name = "styleName", defaultValue = "1", value = "风格名", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "styleStatus", defaultValue = "1", value = "风格状态", required = true, paramType = "int"),
+    })
+    @RequestMapping(value = "/apih/updatestyle",method = RequestMethod.GET)
     @CrossOrigin
-    @RequestMapping("/api/updatestyle")
     @ResponseBody
     public JsonResult updateStyleApi(Style style){
         JsonResult jsonResult = null;
@@ -97,8 +120,13 @@ public class StyleApi {
      * @param styleId
      * @return
      */
+
+    @ApiOperation(value="根据ID逻辑删除风格",notes="注意参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "styleId",value = "风格ID", required = true, paramType = "int")
+    })
+    @RequestMapping(value = "/apih/deletestyle",method = RequestMethod.GET)
     @CrossOrigin
-    @RequestMapping("/api/deletestyle")
     @ResponseBody
     public JsonResult deleteStyleApi(int styleId){
         JsonResult jsonResult = null;
