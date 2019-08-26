@@ -20,6 +20,11 @@
         insert into orders(home_id, user_id, order_price, order_status, order_user_indate, order_user_outdate)
         values (#{homeId}, #{userId}, #{orderPrice}, #{orderStatus}, #{orderUserIndate}, #{orderUserOutdate})
     </insert>
+    <insert id="insertOrderPrice">
+        insert into orders(home_id, user_id, order_price, order_status, order_user_indate, order_user_outdate)
+        values (#{homeId}, #{userId}, #{orderPrice}, #{orderStatus}, #{orderUserIndate}, #{orderUserOutdate})
+    </insert>
+
 
 
 </mapper>

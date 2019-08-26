@@ -35,10 +35,4 @@ public interface HomeDao {
      */
     List<Home> queryHomeById(String homeId);
 
-//    /**
-//     * 查询价格
-//     * @param homeId
-//     * @return
-//     */
-//    int queryPrice(int homeId);
 }
