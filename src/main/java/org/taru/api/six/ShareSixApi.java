@@ -120,7 +120,7 @@ public class ShareSixApi {
     })
     @RequestMapping(value = "/api/collectionInsert",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResult collectionInsert(@Param("userId")int userId,@Param("homeId")int homeId){
+    public JsonResult collectionInsert(int userId,int homeId){
         int i=c1.collectionInsert(userId,homeId);
         JsonResult json=null;
         try{
