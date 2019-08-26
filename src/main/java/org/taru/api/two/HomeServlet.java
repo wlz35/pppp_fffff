@@ -18,7 +18,7 @@ import java.util.List;
 public class HomeServlet {
     @Autowired
     HomeService homeService;
-    /**
+    /***
      *查询房源详细信息（包括房东、评论、配置）
      * @return
      */
