@@ -1,5 +1,8 @@
 package org.taru.api.six;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,8 +26,16 @@ public class OrderModifyApi {
     OrderModifyInterface m;
     /**
      * 修改订单api
+     *
      */
-    @RequestMapping(value = "/api/orderModify",method = RequestMethod.POST)
+    @ApiOperation(value="修改订单方法",notes="注意参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", defaultValue = "1", value = "订单Id", required = true, paramType = "int"),
+            @ApiImplicitParam(name = "OrderPrice", defaultValue = "1", value = "订单价格", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "orderUserIndate", defaultValue = "1", value = "订单开始时间", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "OrderPrice", defaultValue = "1", value = "订单结束时间", required = true, paramType = "String")
+    })
+    @RequestMapping(value = "/apih/orderModify",method = RequestMethod.POST)
     @ResponseBody
     public JsonResult orderQuary(@Param("id")int  id,
                                  @Param("OrderPrice")String orderPrice,

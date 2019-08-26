@@ -1,5 +1,8 @@
 package org.taru.api.six;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +25,11 @@ public class OrderDeleteApi {
     /**
      * 订单删除
      */
-    @RequestMapping(value = "/api/orderDelete",method = RequestMethod.GET)
+    @ApiOperation(value="删除订单方法",notes="注意参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", defaultValue = "1", value = "订单ID", required = true, paramType = "int"),
+    })
+    @RequestMapping(value = "/apih/orderDelete",method = RequestMethod.GET)
     @ResponseBody
     public JsonResult orderQuary(@Param("id")int id){
         int i=d.orderDeleteInterface(id);

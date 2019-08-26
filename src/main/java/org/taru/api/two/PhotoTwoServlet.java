@@ -1,5 +1,8 @@
 package org.taru.api.two;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +20,10 @@ public class PhotoTwoServlet {
     /**
      * 上传图片(传5张图片)
      */
+    @ApiOperation(value = "上传图片(传5张图片)")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pictures", defaultValue = "1", value = "pictures", required = true, paramType = "Object"),
+    })
     @RequestMapping("/api/upload/photo")
     public JsonResult photoUpload2(Pictures pictures){
         JsonResult jsonResult = null;
