@@ -1,5 +1,8 @@
 package org.taru.api.six;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +23,11 @@ public class OrderOneApi {
     /**
      * 根据 用户id查询订单api
      */
-    @RequestMapping(value = "/api/orderOne",method = RequestMethod.GET)
+    @ApiOperation(value="根据用户ID查询订单方法",notes="注意参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", defaultValue = "1", value = "用户ID", required = true, paramType = "int"),
+    })
+    @RequestMapping(value = "/apih/orderOne",method = RequestMethod.GET)
     @ResponseBody
     public JsonResult orderQuary(@Param("id")int id){
         List<OrderrVo> list=o.orderOneInterface(id);

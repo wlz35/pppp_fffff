@@ -2,6 +2,9 @@ package org.taru.api.six;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,8 +24,12 @@ public class DiscussQuaryApi {
     @Autowired
     DiscussQuaryInterface d;
 
-
-    @RequestMapping(value = "/api/discussQuary",method = RequestMethod.GET)
+    @ApiOperation(value="查询所有评论方法",notes="注意参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum", defaultValue = "1", value = "当前页", required = true, paramType = "int"),
+            @ApiImplicitParam(name = "pageSize", defaultValue = "1", value = "每页条数", required = true, paramType = "int")
+    })
+    @RequestMapping(value = "/apih/discussQuary",method = RequestMethod.GET)
     @ResponseBody
     public JsonResult discussQuary(@Param("pageNum")int pageNum,@Param("pageSize")int pageSize){
         PageHelper.startPage(pageNum,pageSize);

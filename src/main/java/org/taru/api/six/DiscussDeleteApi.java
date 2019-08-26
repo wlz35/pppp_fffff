@@ -1,5 +1,8 @@
 package org.taru.api.six;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,8 +28,11 @@ public class DiscussDeleteApi {
      * @param
      * @return
      */
-
-    @RequestMapping(value = "/api/discussDelete",method = RequestMethod.GET)
+    @ApiOperation(value="删除评论方法",notes="注意参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", defaultValue = "1", value = "评论ID", required = true, paramType = "int"),
+    })
+    @RequestMapping(value = "/apih/discussDelete",method = RequestMethod.GET)
     @ResponseBody
     public JsonResult discussQuary(@Param("id")int id){
         int i=d.discussDeleteInterface(id);
