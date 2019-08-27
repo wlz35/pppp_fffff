@@ -36,7 +36,7 @@
             <result column="home_id" property="homeId" jdbcType="INTEGER"></result>
             <result column="discuss_status" property="discussStatus" jdbcType="INTEGER"></result>
         </collection>
-        <collection property="user" ofType="org.taru.entity.User" >
+        <collection property="user" javaType="org.taru.entity.User" >
             <id column="user_id" property="userId" jdbcType="INTEGER" />
             <result column="user_name" property="userName" jdbcType="VARCHAR" />
             <result column="user_password" property="passWord" jdbcType="VARCHAR" />

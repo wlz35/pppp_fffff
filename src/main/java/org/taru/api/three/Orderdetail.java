@@ -13,6 +13,8 @@ import org.taru.entity.Order;
 import org.taru.service.three.QueryorderbyIdService;
 import org.taru.vo.JsonResult;
 
+import java.util.List;
+
 /**
  * 根据订单ID查询订单详情
  */
@@ -24,15 +26,15 @@ public class Orderdetail {
 
     @ApiOperation(value="根据订单ID查询订单详情",notes="注意参数")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "orderId", value = "订单ID", required = true, paramType = "int")
+            @ApiImplicitParam(name = "userid", value = "订单ID", required = true, paramType = "int")
     })
     @RequestMapping(value = "/api/queryorderbyId",method = RequestMethod.GET)
     @CrossOrigin
     @ResponseBody
-    public JsonResult queryPri(int orderId){
+    public JsonResult queryPri(int userid){
         JsonResult jsonclass = null;
         try {
-            Order order = queryorderbyId.queryorder(orderId);
+            List<Order> order = queryorderbyId.queryorder(userid);
             if(order==null){
                 jsonclass = new JsonResult("400","查询详情失败","");
             }else{

@@ -4,12 +4,14 @@ import org.apache.ibatis.annotations.Mapper;
 import org.taru.entity.Order;
 import org.taru.entity.User;
 
+import java.util.List;
+
 /**
  * 用户和订单查询
  */
 @Mapper
 public interface OrderDao {
-    Order queryorder(int id);            //查询单个订单详情
+    List<Order> queryorder(int UserId);            //查询单个订单详情
     User hosityorder(int userId);       //查询用户历史订单
     User userdetail(int userId);         //查询用户详情
 }
