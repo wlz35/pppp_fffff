@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.taru.service.two.PhotoTwoService;
 import org.taru.vo.JsonResult;
@@ -24,7 +25,7 @@ public class PhotoTwoServlet {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pictures", defaultValue = "1", value = "pictures", required = true, paramType = "Object"),
     })
-    @RequestMapping("/api/upload/photo")
+    @RequestMapping(value = "/api/upload/photo", method = RequestMethod.POST)
     public JsonResult photoUpload2(Pictures pictures){
         JsonResult jsonResult = null;
         try{

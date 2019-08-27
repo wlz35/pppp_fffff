@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.taru.config.AlipayConfig;
 import org.taru.vo.JsonResult;
@@ -45,7 +46,7 @@ public class AlipayController {
             @ApiImplicitParam(name = "homeName",value = "房源名称", required = true, paramType = "String"),
             @ApiImplicitParam(name = "homeDescribe",value = "房源描述", required = true, paramType = "String")
     })
-    @RequestMapping("/api/user/aliPay")
+    @RequestMapping(value = "/api/user/aliPay", method = RequestMethod.GET)
     public void pay(HttpServletRequest request,
                     HttpServletResponse response,
                     String homeId,
