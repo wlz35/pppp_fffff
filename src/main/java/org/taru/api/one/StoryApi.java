@@ -1,6 +1,9 @@
 package org.taru.api.one;
 
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,6 +23,12 @@ public class StoryApi {
     @Autowired
     StoryService service;
 
+    /**
+     * 查询所有故事
+     * @return
+     */
+    @ApiOperation(value = "查询所有故事，不需要参数")
+    @ApiImplicitParams({})
     @RequestMapping(value = "/api/story/queryAll",method = RequestMethod.GET)
     public JsonResult queryAllStory(){
         JsonResult jsonResult = null;
@@ -36,6 +45,17 @@ public class StoryApi {
         return jsonResult;
     }
 
+
+    /**
+     * 根据城市查询故事
+     * @param storyCity
+     * @return
+     */
+    @ApiOperation(value = "根据城市查询故事")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "storyCity", value = "城市名", dataType = "String", paramType = "query",
+                    allowableValues = "北京,成都,重庆", allowMultiple = true)
+    })
     @RequestMapping(value = "/api/story/queryByCity",method = RequestMethod.GET)
     public JsonResult queryStoryByCity(String storyCity){
         JsonResult jsonResult = null;
@@ -52,6 +72,16 @@ public class StoryApi {
         return jsonResult;
     }
 
+    /**
+     * 根据故事ID查询故事详情
+     * @param storyId
+     * @return
+     */
+    @ApiOperation(value = "根据故事ID查询故事详情")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "storyId", value = "城市ID", dataType = "String", paramType = "query",
+                    allowableValues = "1,2,3", allowMultiple = true)
+    })
     @RequestMapping(value = "/api/story/queryByStoryId",method = RequestMethod.GET)
     public JsonResult queryStoryById(String storyId){
         JsonResult jsonResult = null;

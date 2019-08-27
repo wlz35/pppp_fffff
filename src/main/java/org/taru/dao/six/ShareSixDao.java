@@ -1,6 +1,7 @@
 package org.taru.dao.six;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import org.taru.entity.HomeCollection;
 import org.taru.entity.UserRelationVo;
@@ -30,5 +31,5 @@ public interface ShareSixDao {
     /**
      * 根据当前用户id和房源id收藏
      */
-    int collectionInsert(int userId,int homeId);
+    int collectionInsert(@Param("userId")int userId,@Param("homeId")int homeId);
 }

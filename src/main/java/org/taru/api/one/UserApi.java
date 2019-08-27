@@ -7,26 +7,27 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.taru.entity.User;
 import org.taru.service.one.UserService;
 import org.taru.util.AliyunSmsUtils;
 import org.taru.vo.JsonResult;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.net.HttpCookie;
 
 
-@CrossOrigin
+
+@CrossOrigin(allowCredentials = "true",allowedHeaders = "*")
 @RestController
 public class UserApi {
     @Autowired
     UserService service;
+    @Autowired
+    RedisTemplate redisTemplate;
     @Value("F:\\images")
     private String uploadAbsolutePath;
 
@@ -48,13 +49,12 @@ public class UserApi {
         JsonResult jsonResult = null;
         try{
             User user = service.login(userName, passWord);
-            String cookidId = String.valueOf(user.getUserId());
+            //String cookidId = String.valueOf(user.getUserId());
             if(user!=null){
-                Cookie cookie= new Cookie("loginUserId",cookidId);
-                cookie.setMaxAge(60*60*60);
-                response.addCookie(cookie);
+//                Cookie cookie= new Cookie("token",cookidId);
+//                cookie.setMaxAge(60*60*60);
+//                response.addCookie(cookie);
                 request.getSession().setAttribute("loginKey",user);
-                request.getSession().setMaxInactiveInterval(3600);
                 jsonResult=new JsonResult("200","登录成功",user);
             }else{
                 jsonResult=new JsonResult("404","账号或密码错误","");
@@ -75,14 +75,15 @@ public class UserApi {
     @ApiImplicitParams({})
     @RequestMapping(value = "/api/logout",method=RequestMethod.GET)
     @ResponseBody
-    public JsonResult loginOut(HttpServletRequest request) {
+    public JsonResult loginOut(HttpServletResponse response) {
         JsonResult  result=null;
         try{
-            HttpSession session = request.getSession();
-            if(session!=null){
-             session.removeAttribute("loginKey");
-             session.invalidate();   //Session销毁 清除登陆状态
-            }
+            Cookie cookie2 = new Cookie("JSESSIONID",null);
+            cookie2.setPath("/");
+            cookie2.setValue(null);
+            cookie2.setMaxAge(0);
+            response.addCookie(cookie2);
+
             result  =new JsonResult("200","退出成功","");
         }catch (Exception  ex){
             ex.printStackTrace();
