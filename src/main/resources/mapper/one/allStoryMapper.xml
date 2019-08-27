@@ -56,8 +56,11 @@
 
     <!--根据城市搜索故事-->
     <select id="queryStoryByCity" resultMap="storyResultMap">
-          select * from story s left join pictures p on s.pictures_id = p.picture_id
-          left join landlord l on s.landlord_id = l.landlord_id where s.story_city=#{storyCity}
+          select * from story s
+          left join pictures p on s.pictures_id = p.picture_id
+          left join landlord l on s.landlord_id = l.landlord_id
+          left join user u on u.user_id = s.user_id
+          where s.story_city=#{storyCity}
     </select>
 
 
