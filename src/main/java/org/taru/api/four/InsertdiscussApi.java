@@ -1,11 +1,11 @@
 package org.taru.api.four;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.taru.service.four.InsertdiscussService;
 import org.taru.vo.JsonResult;
 
@@ -20,7 +20,13 @@ public class InsertdiscussApi {
 
     @Autowired
     InsertdiscussService inserdis;
-    @RequestMapping("/api/insertdiscuss")//提交评论的接口
+    @ApiOperation(value="提交评论",notes="注意参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "discusstext", value = "评论的内容", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "homeid", value = "房屋id", required = true, paramType = "int"),
+            @ApiImplicitParam(name = "userid", value = "用户id", required = true, paramType = "int")
+    })
+    @RequestMapping(value ="/api/insertdiscuss",method = RequestMethod.GET)//提交评论的接口
     @ResponseBody
     public JsonResult insertdiscuss(@RequestParam("discusstext") String discusstext,
                                     @RequestParam("homeid") int homeid,

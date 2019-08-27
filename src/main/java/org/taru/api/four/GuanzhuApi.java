@@ -1,23 +1,27 @@
 package org.taru.api.four;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.taru.service.four.GuanzhuService;
 import org.taru.vo.JsonResult;
 
 import javax.servlet.http.HttpSession;
-
+//点击加为好友
 @Controller
 @CrossOrigin
 public class GuanzhuApi {
-
     @Autowired
     GuanzhuService gs;
-    @RequestMapping("/api/guanzhuapi")//提交评论的接口
+    @ApiOperation(value="点击加为好友",notes="注意参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userid", value = "用户id", required = true, paramType = "int"),
+            @ApiImplicitParam(name = "goodfriendid", value = "好友id", required = true, paramType = "int")
+    })
+    @RequestMapping(value ="/api/guanzhuapi",method = RequestMethod.GET)//提交评论的接口
     @ResponseBody
     public JsonResult guanzhuapi(
                                     @RequestParam("userid") int userid,

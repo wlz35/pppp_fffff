@@ -1,9 +1,13 @@
 package org.taru.api.three;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.taru.entity.User;
 import org.taru.service.three.UserdetailService;
@@ -16,8 +20,15 @@ import org.taru.vo.JsonResult;
 public class Userdetail {
     @Autowired
     UserdetailService detail;
+
+
+    @ApiOperation(value="根据用户ID查询用户详情",notes="注意参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userId", value = "用户ID", required = true, paramType = "int"),
+
+    })
+    @RequestMapping(value = "/api/queryuser",method = RequestMethod.GET)
     @CrossOrigin
-    @RequestMapping("/api/queryuser")
     @ResponseBody
     public JsonResult queryPri(int userId){
         JsonResult jsonclass = null;

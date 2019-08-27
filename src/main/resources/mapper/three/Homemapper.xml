@@ -7,21 +7,17 @@
     <id property="styleId" column="style_id" jdbcType="TINYINT"></id>
     <result property="styleName" column="style_name" jdbcType="VARCHAR"></result>
     </resultMap>
-    <insert id="addhome" parameterType="org.taru.entity.AddHome" useGeneratedKeys="true" keyProperty="id">
+    <insert id="addPicture" parameterType="org.taru.entity.Pictures" useGeneratedKeys="true" keyProperty="pictureId" >
+        INSERT INTO `mingshu`.`pictures`(`picture_one`, `picture_two`, `picture_three`, `picture_four`, `picture_five`)
+        VALUES (#{pictureOne},#{pictureTwo},#{pictureThree},#{pictureFour},#{pictureFive})
+    </insert>
+    <insert id="addhome" parameterType="org.taru.entity.AddHome">
        INSERT INTO home ( style_id, home_name, home_address, home_price,
        home_in_date,home_out_date, pictures_id, home_describe, home_spot,
        home_configure, landlord_id )
-        VALUES
-            (
-            (
-        SELECT
-            style_id
-        FROM
-            style
-        WHERE
-            style_name = #{styleName}),#{homeName},#{homeAddress},#{homePrice},#{homeInDate },
-            #{homeOutDate},#{picturesId},#{homeDescribe},#{homeSpot},#{homeConfigure},
-            (
+        VALUES((select style_id from style where style_name=#{styleName}),
+        #{homeName},#{homeAddress},#{homePrice},#{homeInDate },
+        #{homeOutDate},#{picturesId},#{homeDescribe},#{homeSpot},#{homeConfigure}, (
         SELECT
             landlord_id
         FROM

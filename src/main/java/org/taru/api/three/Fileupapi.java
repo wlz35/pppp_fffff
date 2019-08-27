@@ -1,9 +1,9 @@
 package org.taru.api.three;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.taru.vo.JsonResult;
 
@@ -15,8 +15,13 @@ import java.util.Date;
  * 上传文件
  */
 
+
+@ApiOperation(value="上传文件",notes="注意参数")
+@ApiImplicitParams({
+        @ApiImplicitParam(name = "file", value = "文件名", required = true, paramType = "String")
+})
+@RequestMapping(value = "/common",method = RequestMethod.GET)
 @RestController
-@RequestMapping("/common")
 public class Fileupapi {
     File uploadPath = null;
 

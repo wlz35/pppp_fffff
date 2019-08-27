@@ -13,8 +13,8 @@ import org.taru.service.four.LoginService;
 public class LoginServiceimpl implements LoginService {
     @Autowired
     LoginDao ld;
-    public Admin loginservice(Admin user){
+    public Admin loginservice(String name, String password){
 
-        return ld.login(user);
+        return ld.login(name,password);
     }
 }

@@ -3,7 +3,51 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.taru.dao.four.Guanzhu">
+    <resultMap id="homeResultMap" type="org.taru.entity.Home">
+        <id column="home_id" property="homeId"></id>
+        <result column="home_name" property="homeName"></result>
+        <result column="home_address" property="homeAddress"></result>
+        <result column="home_price" property="homePrice"></result>
+        <result column="home_in_date" property="homeInDate"></result>
+        <result column="home_out_date" property="homeOutDate"></result>
+        <result column="landlord_id" property="landlord_id"></result>
+        <result column="pictures_id" property="pictureId"></result>
+        <result column="home_describe" property="homeDescribe"></result>
+        <result column="home_status" property="homeStatus"></result>
+        <result column="discuss_id" property="discussId"></result>
+        <result column="style_id" property="styleId"></result>
+        <result column="home_praise" property="homePraise"></result>
+        <result column="home_spot" property="homeSpot"></result>
+        <result column="home_configure" property="homeConfigure"></result>
+        <!--关联订单表-->
+        <collection property="landlords" ofType="org.taru.entity.Landlord">
+            <id property="lanlordId" column="landlord_id" jdbcType="TINYINT"></id>
+            <result property="landlordName" column="landlord_name" jdbcType="TINYINT"></result>
+            <result property="landlordPhonr" column="landlord_phone" jdbcType="VARCHAR"></result>
+        </collection>
+        <!--关联订单表-->
+        <collection property="pictures" ofType="org.taru.entity.Pictures">
+            <id property="pictureId" column="picture_id" jdbcType="TINYINT"></id>
+            <result property="pictureOne" column="picture_one" jdbcType="TINYINT"></result>
+            <result property="pictureTwo" column="picture_two" jdbcType="VARCHAR"></result>
+            <result property="pictureThere" column="picture_three" jdbcType="TINYINT"></result>
+            <result property="pictureFour" column="picture_four" jdbcType="VARCHAR"></result>
+            <result property="pictureFive" column="picture_five" jdbcType="VARCHAR"></result>
+        </collection>
+    </resultMap>
 
+    <!-- 根据房源ID查询房源详情-->
+    <select id="Homedetail" resultMap="homeResultMap">
+        SELECT
+            *
+        FROM
+            home a
+            LEFT JOIN landlord b ON a.landlord_id = b.landlord_id
+            LEFT JOIN pictures c ON a.pictures_id = c.picture_id
+        WHERE
+            a.home_status = 1
+            AND a.home_id =#{homeId}
+ </select>
     <insert id="guanzhu" parameterType="org.taru.entity.Relation" useGeneratedKeys="true" keyProperty="relation_id" >
          insert into relation (user_id,goodfrient_id)
          VALUES (#{userid},#{goodfriendid})

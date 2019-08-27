@@ -5,5 +5,5 @@ import org.apache.ibatis.annotations.Mapper;
 import org.taru.entity.Admin;
 @Mapper
 public interface LoginDao {
-    Admin login(Admin user);
+    Admin login(String name, String password);
 }

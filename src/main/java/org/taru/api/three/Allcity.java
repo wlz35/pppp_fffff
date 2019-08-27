@@ -1,9 +1,11 @@
 package org.taru.api.three;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.taru.entity.Story;
 import org.taru.service.three.AllstoryService;
@@ -15,8 +17,11 @@ import java.util.List;
 public class Allcity {
     @Autowired
     AllstoryService city;
+
+
+    @ApiOperation(value="查询热门城市",notes="无参数")
+    @RequestMapping(value = "/api/querycity",method = RequestMethod.GET)
     @CrossOrigin
-    @RequestMapping("/api/querycity")
     @ResponseBody
     public JsonResult queryPri(){
         JsonResult jsonclass = null;

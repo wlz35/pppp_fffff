@@ -1,9 +1,13 @@
 package org.taru.api.three;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.taru.entity.Order;
 import org.taru.service.three.QueryorderbyIdService;
@@ -16,8 +20,14 @@ import org.taru.vo.JsonResult;
 public class Orderdetail {
     @Autowired
     QueryorderbyIdService queryorderbyId;
+
+
+    @ApiOperation(value="根据订单ID查询订单详情",notes="注意参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "orderId", value = "订单ID", required = true, paramType = "int")
+    })
+    @RequestMapping(value = "/api/queryorderbyId",method = RequestMethod.GET)
     @CrossOrigin
-    @RequestMapping("/api/queryorderbyId")
     @ResponseBody
     public JsonResult queryPri(int orderId){
         JsonResult jsonclass = null;

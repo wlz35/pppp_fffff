@@ -1,12 +1,12 @@
 package org.taru.api.four;
 
 import io.lettuce.core.dynamic.annotation.Param;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.taru.service.four.PraiseService;
 import org.taru.vo.JsonResult;
 
@@ -20,7 +20,12 @@ public class PraiseApi {
 
     @Autowired
     PraiseService praise;
-    @RequestMapping("/api/PraiseApi")//点赞接口
+    @ApiOperation(value="对房屋点赞",notes="注意参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "homeid", value = "房屋的id", required = true, paramType = "int"),
+
+    })
+    @RequestMapping(value ="/api/PraiseApi",method = RequestMethod.GET)//点赞接口
     @ResponseBody
     public JsonResult updatapassword(@RequestParam("homeid") int homeid, HttpSession session) {
 
