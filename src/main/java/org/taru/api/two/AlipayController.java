@@ -5,6 +5,9 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.AlipayTradePayModel;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,6 +38,13 @@ public class AlipayController {
      * @param response
      * @throws Exception
      */
+    @ApiOperation(value="支付宝")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "homeId",value = "房源名", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "allPrice",value = "总金额", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "homeName",value = "房源名称", required = true, paramType = "String"),
+            @ApiImplicitParam(name = "homeDescribe",value = "房源描述", required = true, paramType = "String")
+    })
     @RequestMapping("/api/user/aliPay")
     public void pay(HttpServletRequest request,
                     HttpServletResponse response,
