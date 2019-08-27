@@ -54,7 +54,7 @@ public class UserApi {
 //                Cookie cookie= new Cookie("token",cookidId);
 //                cookie.setMaxAge(60*60*60);
 //                response.addCookie(cookie);
-                request.getSession().setAttribute("loginKey",user.getUserId());
+                request.getSession().setAttribute("loginKey",user);
                 jsonResult=new JsonResult("200","登录成功",user);
             }else{
                 jsonResult=new JsonResult("404","账号或密码错误","");
