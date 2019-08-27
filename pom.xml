@@ -110,6 +110,13 @@
             <version>2.9.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>3.0.52.ALL</version>
+        </dependency>
+
+
 
     </dependencies>
 
