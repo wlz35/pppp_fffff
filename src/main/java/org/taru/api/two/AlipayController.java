@@ -5,11 +5,9 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.AlipayTradePayModel;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradePagePayRequest;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 import org.taru.config.AlipayConfig;
 import org.taru.vo.JsonResult;
 
@@ -32,13 +30,9 @@ public class AlipayController {
     String public_key = AlipayConfig.public_key;
     String signtype = AlipayConfig.signtype;
     /**
-     *
+     *支付宝
      * @param request
      * @param response
-     * @param homeNumber
-     * @param totalPrice
-     * @param homeName
-     * @param homeDescribe
      * @throws Exception
      */
     @RequestMapping("/api/user/aliPay")
@@ -137,6 +131,4 @@ public class AlipayController {
             System.out.println("异步通知失败");
         }
     }
-
-
 }
