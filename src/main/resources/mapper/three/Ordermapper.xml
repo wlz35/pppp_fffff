@@ -4,22 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.taru.dao.three.OrderDao">
     <!--关联关系映射-->
-    <resultMap id="Orderdetail" type="org.taru.entity.Order">
-        <id property="orderId" column="order_id" jdbcType="TINYINT"></id>
-        <result property="orderPrice" column="order_price" jdbcType="VARCHAR"></result>
-        <result property="userId" column="user_id" jdbcType="TINYINT"></result>
-        <result property="homeId" column="home_id" jdbcType="TINYINT"></result>
-        <result property="orderStatus" column="order_status" jdbcType="VARCHAR"></result>
-        <result property="orderUserIndate" column="order_user_indate" jdbcType="VARCHAR"></result>
-        <result property="orderOutdate" column="order_user_outdate" jdbcType="VARCHAR"></result>
-        <association property="user" javaType="org.taru.entity.User">
-            <id property="userId" column="user_id" jdbcType="TINYINT"></id>
-            <result property="userName" column="user_name" jdbcType="VARCHAR"></result>
-            <result property="email" column="email" jdbcType="VARCHAR"></result>
-            <result property="phone" column="phone" jdbcType="VARCHAR"></result>
-            <result property="sex" column="sex" jdbcType="VARCHAR"></result>
-            <result property="userHeaderPicture" column="user_header_picture" jdbcType="VARCHAR"></result>
-        </association>
+    <resultMap id="Orderdetail" type="org.taru.entity.User">
+        <id property="userId" column="user_id" jdbcType="TINYINT"></id>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"></result>
+        <result property="email" column="email" jdbcType="VARCHAR"></result>
+        <result property="phone" column="phone" jdbcType="VARCHAR"></result>
+        <result property="sex" column="sex" jdbcType="VARCHAR"></result>
+        <result property="userHeaderPicture" column="user_header_picture" jdbcType="VARCHAR"></result>
+        <!--关联订单表-->
+        <collection property="orders" ofType="org.taru.entity.Order">
+            <id property="orderId" column="order_id" jdbcType="TINYINT"></id>
+            <result property="orderPrice" column="order_price" jdbcType="VARCHAR"></result>
+            <result property="userId" column="user_id" jdbcType="TINYINT"></result>
+            <result property="homeId" column="home_id" jdbcType="TINYINT"></result>
+            <result property="homeName" column="home_name" jdbcType="VARCHAR"></result>
+            <result property="homePrice" column="home_price" jdbcType="VARCHAR"></result>
+            <result property="picTure" column="picture_one" jdbcType="VARCHAR"></result>
+            <result property="homeAddress" column="home_address" jdbcType="VARCHAR"></result>
+            <result property="orderStatus" column="order_status" jdbcType="VARCHAR"></result>
+            <result property="orderUserIndate" column="order_user_indate" jdbcType="VARCHAR"></result>
+            <result property="orderOutdate" column="order_user_outdate" jdbcType="VARCHAR"></result>
+        </collection>
+
     </resultMap>
 
     <select id="queryorder" resultMap="Orderdetail">
@@ -28,8 +34,10 @@
         FROM
             orders a
             LEFT JOIN USER b ON a.user_id = b.user_id
+						LEFT JOIN home c ON a.home_id = c.home_id
+						left join pictures d on c.pictures_id=d.picture_id
         WHERE
-            order_id = #{orderId}
+            a.user_id=#{userId}
     </select>
 
 </mapper>
