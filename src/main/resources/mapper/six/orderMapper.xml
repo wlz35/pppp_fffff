@@ -9,7 +9,7 @@ on h.home_id=o.home_id LEFT JOIN user u on u.user_id=o.user_id
     </select>
 <select id="ordersOneDao" parameterType="int" resultType="org.taru.entity.OrderrVo">
         select o.order_id orderId,h.home_name homeName,u.user_name userName,o.order_user_indate orderUserIndate,o.order_price orderPrice,o.order_user_outdate orderOutdate from orders o LEFT JOIN home h
-on h.home_id=o.home_id LEFT JOIN user u on u.user_id=o.user_id where u.user_id=#{id}
+on h.home_id=o.home_id LEFT JOIN user u on u.user_id=o.user_id where o.user_id=#{id}
     </select>
 <update id="orderModify" parameterType="hashMap">
         UPDATE `mingshu`.`orders` SET  `order_price` = #{orderPrice}, `order_user_indate` = #{orderUserIndate}, `order_user_outdate` = #{orderUserOutdate} WHERE `order_id` = #{id};
