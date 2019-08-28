@@ -1,7 +1,7 @@
 package org.taru.vo.one;
 
 import org.taru.entity.Landlord;
-import org.taru.entity.User;
+
 
 import java.util.List;
 
