@@ -24,7 +24,7 @@
     </update>
     <select id="discussOneQuary" parameterType="int" resultMap="discussOneMap">
         select d.discuss_id,d.discuss_text,d.discuss_date,d.discuss_status,h.home_name,h.home_address,h.home_id  from discuss d  left JOIN home h on h.home_id=d.discuss_id
-        where h.home_id=#{id}
+        where d.home_id=#{id}
     </select>
     <resultMap id="discussOneMap" type="org.taru.entity.DIscussHomeVo">
         <id property="discussId" column="discuss_id" jdbcType="TINYINT"></id>

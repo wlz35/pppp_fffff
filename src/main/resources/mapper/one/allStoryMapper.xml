@@ -36,9 +36,14 @@
             <result column="home_id" property="homeId" jdbcType="INTEGER"></result>
             <result column="discuss_status" property="discussStatus" jdbcType="INTEGER"></result>
         </collection>
-        <collection property="user" ofType="org.taru.vo.one.User">
+        <collection property="user" ofType="org.taru.entity.User">
             <id column="user_id" property="userId" jdbcType="INTEGER"></id>
             <result column="user_name" property="userName" jdbcType="VARCHAR"></result>
+            <result column="user_password" property="passWord" jdbcType="VARCHAR"></result>
+            <result column="sex" property="sex" jdbcType="VARCHAR"></result>
+            <result column="email" property="email" jdbcType="VARCHAR"></result>
+            <result column="phone" property="phone" jdbcType="VARCHAR"></result>
+            <result column="user_header_picture" property="userHeaderPicture" jdbcType="VARCHAR"></result>
         </collection>
     </resultMap>
 
