@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.taru.dao.one.StorysDao">
+    <resultMap id="storyResultMap" type="org.taru.vo.one.Storyss">
+        <id column="story_id" property="storyId" jdbcType="INTEGER"></id>
+        <result column="pictures_id" property="picturesId" jdbcType="INTEGER"></result>
+        <result column="story_title" property="storyTitle" jdbcType="VARCHAR"></result>
+        <result column="story_discrible" property="storyDiscrible" jdbcType="VARCHAR"></result>
+        <result column="user_id" property="userId" jdbcType="INTEGER"></result>
+        <result column="story_status" property="storyStatus" jdbcType="INTEGER"></result>
+        <result column="story_city" property="storyCity" jdbcType="VARCHAR"></result>
+        <result column="story_likes" property="storyLikes" jdbcType="VARCHAR"></result>
+        <result column="landlord_id" property="landlordId" jdbcType="VARCHAR"></result>
+        <association property="pictures" javaType ="org.taru.vo.one.Pictures">
+            <id column="picture_id" property="pictureId" jdbcType="INTEGER" ></id>
+            <result column="picture_one" property="pictureOne" jdbcType="VARCHAR"></result>
+            <result column="picture_two" property="pictureTwo" jdbcType="VARCHAR"></result>
+            <result column="picture_three" property="pictureThree" jdbcType="VARCHAR"></result>
+            <result column="picture_four" property="pictureFour" jdbcType="VARCHAR"></result>
+            <result column="picture_five" property="pictureFive" jdbcType="VARCHAR"></result>
+        </association>
+        <collection property="landlord" ofType="org.taru.entity.Landlord">
+            <id column="landlord_id" property="lanlordId" jdbcType="INTEGER"></id>
+            <result column="landlord_name" property="landlordName" jdbcType="VARCHAR"></result>
+            <result column="landlord_phone" property="landlordPhonr" jdbcType="VARCHAR"></result>
+            <result column="landlord_sex" property="landlordSex" jdbcType="VARCHAR"></result>
+            <result column="landlord_header_picture" property="landlordHeaderPicture" jdbcType="VARCHAR"></result>
+        </collection>
+        <collection property="discusses" ofType="org.taru.vo.one.Discuss">
+            <id column="discuss_id" property="discussId" jdbcType="INTEGER"></id>
+            <result column="user_id" property="userId" jdbcType="INTEGER"></result>
+            <result column="discuss_text" property="discussText" jdbcType="VARCHAR"></result>
+            <result column="discuss_date" property="discussDate" jdbcType="DATE"></result>
+            <result column="home_id" property="homeId" jdbcType="INTEGER"></result>
+            <result column="discuss_status" property="discussStatus" jdbcType="INTEGER"></result>
+        </collection>
+        <collection property="user" javaType="org.taru.entity.User" >
+            <id column="user_id" property="userId" jdbcType="INTEGER" />
+            <result column="user_name" property="userName" jdbcType="VARCHAR" />
+            <result column="user_password" property="passWord" jdbcType="VARCHAR" />
+            <result column="sex" property="sex" jdbcType="VARCHAR" />
+            <result column="email" property="email" jdbcType="VARCHAR" />
+            <result column="phone" property="phone" jdbcType="VARCHAR" />
+            <result column="user_header_picture" property="userHeaderPicture" jdbcType="VARCHAR" />
+        </collection>
+    </resultMap>
+
+    <!--查询所有故事-->
+    <select id="queryAllStory" resultMap="storyResultMap">
+          select * from story s left join pictures p on s.pictures_id = p.picture_id
+          left join landlord l on s.landlord_id = l.landlord_id
+    </select>
+
+
+    <!--根据城市搜索故事-->
+    <select id="queryStoryByCity" resultMap="storyResultMap">
+          select * from story s
+          left join pictures p on s.pictures_id = p.picture_id
+          left join landlord l on s.landlord_id = l.landlord_id
+          left join user u on u.user_id = s.user_id
+          where s.story_city=#{storyCity}
+    </select>
+
+
+    <!--根据故事Id查询故事详情-->
+    <select id="queryStoryById" resultMap="storyResultMap">
+          select * from story s left join pictures p on s.pictures_id = p.picture_id
+          left join landlord l on s.landlord_id = l.landlord_id
+          left join discuss d on s.user_id = d.user_id
+          left join user u on d.user_id = u.user_id
+          where s.story_id=#{storyId}
+    </select>
+
+
+</mapper>
