@@ -12,10 +12,10 @@ on h.home_id=o.home_id LEFT JOIN user u on u.user_id=o.user_id
 on h.home_id=o.home_id LEFT JOIN user u on u.user_id=o.user_id where u.user_id=#{id}
     </select>
 <update id="orderModify" parameterType="hashMap">
-        UPDATE `mingshu`.`orders` SET  `order_price` = #{orderPrice}, `order_user_indate` = #{orderUserIndate}, `order_user_outdate` = #{orderUserOutdate} WHERE `order_id` = #{id};
+        UPDATE `orders` SET  `order_price` = #{orderPrice}, `order_user_indate` = #{orderUserIndate}, `order_user_outdate` = #{orderUserOutdate} WHERE `order_id` = #{id};
     </update>
 <update id="orderdelete" parameterType="int">
-        UPDATE `mingshu`.`orders` SET  `order_status` = 0 WHERE `order_id` = #{id};
+        UPDATE `orders` SET  `order_status` = 0 WHERE `order_id` = #{id};
 
     </update>
 
