@@ -1,6 +1,7 @@
 package org.taru.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 房屋表
@@ -154,4 +155,24 @@ public class Home implements Serializable {
 
     private String pictureId;
     private String homeConfigure;
+
+    public List<Landlord> getLandlords() {
+        return landlords;
+    }
+
+    public void setLandlords(List<Landlord> landlords) {
+        this.landlords = landlords;
+    }
+
+    private List<Landlord> landlords;
+
+    public List<Pictures> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(List<Pictures> pictures) {
+        this.pictures = pictures;
+    }
+
+    private List<Pictures> pictures;
 }
