@@ -20,7 +20,7 @@
 
     </resultMap>
     <update id="discussDelete" parameterType="int">
-        UPDATE `mingshu`.`discuss` SET  `discuss_status` = 0 WHERE `discuss_id` = #{id};
+        UPDATE `discuss` SET  `discuss_status` = 0 WHERE `discuss_id` = #{id};
     </update>
     <select id="discussOneQuary" parameterType="int" resultMap="discussOneMap">
         select d.discuss_id,d.discuss_text,d.discuss_date,d.discuss_status,h.home_name,h.home_address,h.home_id  from discuss d  left JOIN home h on h.home_id=d.discuss_id
