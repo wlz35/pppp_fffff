@@ -8,7 +8,7 @@
        (SELECT MIN(BB.relation_id) FROM relation BB WHERE r.user_id = BB.user_id and r.goodfrient_id= BB.goodfrient_id GROUP BY BB.user_id) and r.user_id=#{id}
 </select>
     <update id="shareDao" parameterType="int">
-        INSERT INTO `mingshu`.`information`( `user_id`, `home_id`) VALUES (#{relationId}, #{homeId});
+        INSERT INTO `information`( `user_id`, `home_id`) VALUES (#{relationId}, #{homeId});
     </update>
     <select id="collectionQuary" parameterType="int" resultType="org.taru.entity.HomeCollection">
 select h.home_name homeName,h.home_id homeId,h.home_address homeAddress,h.home_price homePrice,p.picture_one pictureOne from collection c LEFT JOIN home h on h.home_id=c.home_id left join pictures p on p.picture_id=h.pictures_id
@@ -16,7 +16,7 @@ where c.user_id=#{id} and c.collection_id =
        (SELECT MIN(BB.collection_id) FROM collection BB WHERE c.user_id = BB.user_id and c.home_id= BB.home_id GROUP BY BB.user_id)  ORDER BY c.collection_id
     </select>
     <insert id="collectionInsert" parameterType="int">
-        INSERT INTO `mingshu`.`collection`(`user_id`, `home_id`) VALUES (#{userId}, #{homeId});
+        INSERT INTO `collection`(`user_id`, `home_id`) VALUES (#{userId}, #{homeId});
     </insert>
 
 </mapper>
