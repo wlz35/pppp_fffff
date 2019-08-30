@@ -30,7 +30,7 @@
             <id property="pictureId" column="picture_id" jdbcType="TINYINT"></id>
             <result property="pictureOne" column="picture_one" jdbcType="TINYINT"></result>
             <result property="pictureTwo" column="picture_two" jdbcType="VARCHAR"></result>
-            <result property="pictureThere" column="picture_three" jdbcType="TINYINT"></result>
+            <result property="pictureThree" column="picture_three" jdbcType="TINYINT"></result>
             <result property="pictureFour" column="picture_four" jdbcType="VARCHAR"></result>
             <result property="pictureFive" column="picture_five" jdbcType="VARCHAR"></result>
         </collection>
