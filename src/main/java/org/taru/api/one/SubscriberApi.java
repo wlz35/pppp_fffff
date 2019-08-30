@@ -33,7 +33,7 @@ public class SubscriberApi {
             @ApiImplicitParam(name = "telphone", value = "用户电话", dataType = "String", paramType = "query",
                     allowableValues = "123456789", allowMultiple = true)
     })
-    @RequestMapping(value = "/api/user/queryByUandP",method = RequestMethod.GET)
+    @RequestMapping(value = "/apih/user/queryByUandP",method = RequestMethod.GET)
     public JsonResult queryByUandP(String userName, String telphone){
         JsonResult jsonResult = null;
         try{
@@ -59,7 +59,7 @@ public class SubscriberApi {
             @ApiImplicitParam(name = "userId", value = "用户ID", dataType = "String", paramType = "query",
                     allowableValues = "1,2,3", allowMultiple = true)
     })
-    @RequestMapping(value = "/api/user/queryById",method = RequestMethod.GET)
+    @RequestMapping(value = "/apih/user/queryById",method = RequestMethod.GET)
     public JsonResult queryById(String userId){
         JsonResult jsonResult = null;
         try{
@@ -82,7 +82,7 @@ public class SubscriberApi {
      */
     @ApiOperation(value = "查询所有用户,不需要参数")
     @ApiImplicitParams({})
-    @RequestMapping(value = "/api/user/queryUser",method = RequestMethod.GET)
+    @RequestMapping(value = "/apih/user/queryUser",method = RequestMethod.GET)
     public JsonResult queryUser(){
         JsonResult jsonResult = null;
         try{
@@ -108,7 +108,7 @@ public class SubscriberApi {
             @ApiImplicitParam(name = "userId", value = "用户ID", dataType = "String", paramType = "query",
                     allowableValues = "1,2,3", allowMultiple = true)
     })
-    @RequestMapping(value = "/api/user/deleteUser",method = RequestMethod.GET)
+    @RequestMapping(value = "/apih/user/deleteUser",method = RequestMethod.GET)
     public JsonResult deleteUser(String userId){
         JsonResult jsonResult = null;
         try{
@@ -140,7 +140,7 @@ public class SubscriberApi {
             @ApiImplicitParam(name = "userId", value = "用户ID", dataType = "String", paramType = "query",
                     allowableValues = "1,2,3", allowMultiple = true)
     })
-    @RequestMapping(value = "/api/user/updateUser",method = RequestMethod.GET)
+    @RequestMapping(value = "/apih/user/updateUser",method = RequestMethod.GET)
     public JsonResult updateUser(String userName, String passWord,String userId){
         JsonResult jsonResult = null;
         try{
